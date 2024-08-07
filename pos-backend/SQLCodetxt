@@ -1,0 +1,9 @@
+CREATE TABLE users (
+	userID int not null,
+	userPassword int not null,
+	fName varchar(10),
+	lName varchar(10),
+	unique (userID)
+);
+
+insert into user values (5491, 94, "Seth", "Porter");
