@@ -12,7 +12,8 @@
     "moduleResolution": "node",                  // Specify module resolution strategy
     "resolveJsonModule": true,                   // Include modules imported with .json extension
     "isolatedModules": true,                     // Ensure TypeScript treats each file as a separate module
-    "noEmit": true,                              // Do not emit outputs
+    "noEmit": true,
+    "allowImportingTsExtensions": true,                              // Do not emit outputs
     "jsx": "react-jsx"                           // Specify JSX code generation
   },
   "include": ["src"],                            // Specify directories to include in the project
