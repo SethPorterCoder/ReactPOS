@@ -61,8 +61,10 @@ app.post('/api/login', (req, res) => {
   db.execute("select * from users where userID = ? and userPassword = ?", [req.body["ID"], req.body["PIN"]], (err, results) => {
     if(err) {
       throw err;
+    } else if(results.length == 0) {
+      res.send(results)
     } else {
-      console.log("Results" + results);
+      results[0]["userPassword"] = null;
       res.send(results);
     }
   });
