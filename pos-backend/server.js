@@ -4,6 +4,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const path = require('path'); // Import path module to work with file paths
 
 const app = express();
 const PORT = 3001;
@@ -76,6 +77,19 @@ app.post('/api/message', (req, res) => {
   console.log('Received message:', message);
   res.send(message);
 });
+
+
+
+
+
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle all other routes and return the index.html from dist for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 // Start the server
 app.listen(PORT, '0.0.0.0', () => {

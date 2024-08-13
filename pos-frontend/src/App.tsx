@@ -1,7 +1,7 @@
 import './App.css'
-import React, { useState, useEffect, useRef, ObjectHTMLAttributes, KeyboardEventHandler } from 'react';
-import axios from 'axios';
+import { useState} from 'react';
 import LogIn from './LogIn';
+import POS from './POS';
 //You need axios to make HTTP requests!
 
 
@@ -22,15 +22,9 @@ function App() {
   }
   else if(logInStatus) {
     return (
-      <div>
-        <h1>Signed in successfully!</h1>
-        
-
-
-      </div>
-
-
-
+      <div className="App">
+      <POS/> {/* This is how you call components!*/}
+    </div>
     );
   }
 }
