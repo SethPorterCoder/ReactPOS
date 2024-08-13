@@ -21,6 +21,13 @@
 
   }
 
+  #itemBox {
+    display: flex;
+    border: 2px solid green; /* Debug border */
+    width: 25%;
+    height: 75%
+  }
+
   
 #topBar {
     display: flex;

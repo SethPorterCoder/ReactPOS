@@ -21,14 +21,14 @@ function POS({handleLogInStatus, devAddress}: propsInterface) {
   }
 
 
-
+  console.log(devAddress);
   return (
     <div>
      
 
       <div id="basePOS">
         <div id="mainPOS">
-          <DynamicButtonTest></DynamicButtonTest>
+          <div id="itemBox"></div>
         </div>
       </div>
 
@@ -52,8 +52,6 @@ function POS({handleLogInStatus, devAddress}: propsInterface) {
 
     
   );
-
-  console.log(devAddress);
 }
 
 

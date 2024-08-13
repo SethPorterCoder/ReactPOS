@@ -25,6 +25,8 @@ function LogIn({ handleLogInStatus, devAddress }: propsInterface) {
   const [pinValue, setPinValue] = useState("");
   //Hooks allow you to create refences to tags.  In this case, it's for input tag to change focus
   const pinRef = useRef<HTMLInputElement>(null);
+  const userRef = useRef<HTMLInputElement>(null);
+  
 
 
 
@@ -131,7 +133,8 @@ function LogIn({ handleLogInStatus, devAddress }: propsInterface) {
               placeholder="ID"
               value={userIDValue}
               onChange={userIDValueEvent}
-              onKeyDown={handleKeyDownForm}>
+              onKeyDown={handleKeyDownForm}
+              ref={userRef}>
             </input>
           </form>
 
