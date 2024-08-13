@@ -2,17 +2,19 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import './LogIn.css';
 
+
 //Since this is typescript, we need to define what datatypes props are going to be using.
 //We use an interface that defines method exactly.
 interface propsInterface {
   handleLogInStatus: (status: boolean) => void;
+  devAddress: string;
   //So in this arrow method, it takes a boolean value and returns nothing.
   //Props are communication between objects.  
   //In this prop, we passed a method from the App.tsx prop to this component
 
 }
 
-function LogIn({ handleLogInStatus }: propsInterface) {
+function LogIn({ handleLogInStatus, devAddress }: propsInterface) {
   //This is how to make reactive button with states
   //States allow for the visible components on the website to change.
   //There are two states.  One that user sees called is the actual DOM.
@@ -21,7 +23,6 @@ function LogIn({ handleLogInStatus }: propsInterface) {
 
   const [userIDValue, setUserIDValue] = useState("");
   const [pinValue, setPinValue] = useState("");
-
   //Hooks allow you to create refences to tags.  In this case, it's for input tag to change focus
   const pinRef = useRef<HTMLInputElement>(null);
 
@@ -36,7 +37,7 @@ function LogIn({ handleLogInStatus }: propsInterface) {
       let userCred = { "ID": parseInt(ID), "PIN": parseInt(PIN) }
 
 
-      const response = await axios.post("http://192.168.0.34:3001/api/login", userCred);
+      const response = await axios.post(devAddress + "/api/login", userCred);
       console.log(response.data);
 
       if (response.data.length == 0) {
