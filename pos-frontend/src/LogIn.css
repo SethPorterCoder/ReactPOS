@@ -11,11 +11,9 @@ h1 {
     align-items: center; /* Center items vertically */
     min-height: 96vh; /* Min Full viewport height */
     max-height: 96vh;/* Max Full viewport height */
-    border: 2px solid red; /* Debug border */
   }
 
   #logInSection{
-    border: 2px solid green;
     justify-content: center; /* Center items horizontally */
     flex-direction: column;
     min-width: 250px;
@@ -30,7 +28,6 @@ h1 {
   }
 
   #forms{
-    border: 2px solid white;
     width: 100%;
   }
 
@@ -45,7 +42,6 @@ h1 {
     padding-bottom: 50px;
 
 
-    border: 2px solid blue;
 
   }
 

@@ -78,6 +78,16 @@ app.post('/api/message', (req, res) => {
   res.send(message);
 });
 
+app.get('/api/getItems', (req, res) => {
+  db.query('select * from items', (error, results) => {
+    console.log(results);
+    res.send(results);
+  
+  
+  });
+
+});
+
 
 
 

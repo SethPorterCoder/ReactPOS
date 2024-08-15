@@ -1,6 +1,8 @@
 
 import './POS.css';
-import DynamicButtonTest from './DynamicButtonTest';
+import { useEffect, useState } from 'react';
+import ScrollableButtonGrid from './ScrollableButtonGrid';
+import axios from 'axios';
 
 interface propsInterface {
   handleLogInStatus: (status: boolean) => void;
@@ -13,23 +15,69 @@ interface propsInterface {
 
 
 
+  
+
+function POS({ handleLogInStatus, devAddress }: propsInterface) {
+  const [itemCount, setItemCount] = useState(0);
+  const [itemArray, setItemArray] = useState(undefined);
 
 
-function POS({handleLogInStatus, devAddress}: propsInterface) {
   const logOutButtonPressed = () => {
     handleLogInStatus(false);
   }
 
+  const refreshItems = async () => {
+    try {
+      const response = await axios.get(devAddress + "/api/getItems")
+      .then(response => {
+        setItemCount(response.data.length);
+        setItemArray(response.data);
+      });
 
-  console.log(devAddress);
+      console.log(itemArray);
+    } catch (error) {
+      console.error("Error Message:" + error);
+    }
+  };
+  useEffect(() => {
+    refreshItems();
+  }, []); // Dependency array is now empty, so this will only run once after the initial render.
+  
+
+
+
+// Function to handle changing the number of divs
+
+  
   return (
     <div>
-     
+
 
       <div id="basePOS">
         <div id="mainPOS">
-          <div id="itemBox"></div>
+          <div id="receiptBox">
+            <div id="receiptDisplay">
+
+            </div>
+
+
+            <div id="actionBox">
+
+
+            </div>
+
+
+
+          </div>
+
+          <div id="itemBox">
+            <ScrollableButtonGrid itemCount={itemCount}></ScrollableButtonGrid>
+
+          </div>
         </div>
+
+
+
       </div>
 
       <div id="topBar">
@@ -48,9 +96,9 @@ function POS({handleLogInStatus, devAddress}: propsInterface) {
       </div>
     </div>
 
-    
 
-    
+
+
   );
 }
 

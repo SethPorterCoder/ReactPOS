@@ -6,4 +6,12 @@ CREATE TABLE users (
 	unique (userID)
 );
 
-insert into user values (5491, 94, "Seth", "Porter");
+insert into users values (5491, 94, "Seth", "Porter");
+
+create table items (
+	itemID INT AUTO_INCREMENT PRIMARY KEY,
+	name varchar(25),
+	price decimal(10, 2)
+);
+
+insert into items values(NULL, 'Cupcake', 25.99);

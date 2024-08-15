@@ -14,7 +14,6 @@ var devAddress: string = "http://localhost:3001"
 
 function App() {
   const[logInStatus, setLogInStatus] = useState<boolean>(false);
-  console.log(logInStatus);
 
 
   if(!logInStatus) {
