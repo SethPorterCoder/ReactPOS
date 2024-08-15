@@ -28,7 +28,7 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
 
   const refreshItems = async () => {
     try {
-      const response = await axios.get(devAddress + "/api/getItems")
+      await axios.get(devAddress + "/api/getItems")
       .then(response => {
         setItemCount(response.data.length);
         setItemArray(response.data);
