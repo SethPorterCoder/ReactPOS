@@ -104,7 +104,6 @@ function LogIn({ handleLogInStatus, devAddress }: propsInterface) {
   }
 
   const buttonPressed = async () => {
-    //sendAPI();
     submitLogIn(userIDValue, pinValue);
 
   }

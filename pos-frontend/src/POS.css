@@ -25,7 +25,6 @@
 }
 
 #receiptBox {
-  border: 2px solid red;
   display: flex;
   width: 30%;
   height: 100%;
@@ -37,22 +36,24 @@
   margin-right: 5px;
   margin-bottom: auto;
 
+
 }
 
 #receiptDisplay {
-  display: flex;
   background-color: white;
   border-radius: 25px;
 
   width: 100%;
   height: 75%;
-  margin: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
 #itemBox {
   display: flex;
-  border: 2px solid white;
   width: 69%;
   height: 100%;
 
@@ -60,18 +61,17 @@
   margin-bottom: auto;
 
   margin-top: 5px;
-  margin-left:auto;
+  margin-left:5px;
 
 
 }
 
 #actionBox {
   display: flex;
-  border: 2px solid yellow;
 
 
 
-
+flex-direction: column;
   margin: auto;
   height: 23%;
   width: 98%;
@@ -137,4 +137,109 @@
 
 #loggedInUser {
   display: flex;
+}
+
+#taxBox {
+  display: flex;
+  width: 100%;
+  height: 25%;
+}
+
+#totalBox {
+  display: flex;
+
+  width: 100%;
+  height: 25%;
+
+}
+
+#voidPayBox {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: 0px;
+  height: 35%;
+
+  width: 100%;
+
+}
+
+#payButtonBox{
+  display: flex;
+  margin-right: 0px;
+  margin-left: auto;
+
+  width: 45%;
+}
+
+#voidButtonBox {
+  display: flex;
+  
+  margin-right: auto;
+  margin-left: 0px;
+  width: 45%;
+
+}
+
+#voidButton {
+  width: 100%;
+
+
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+#payButton {
+  width: 100%;
+
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+#taxLabelDiv {
+  display: flex;
+
+  align-items: center;
+}
+
+#totalLabelDiv {
+  display: flex;
+
+  align-items: center;
+}
+
+#taxAmountDiv {
+  display: flex;
+
+  margin-left: auto;
+  margin-right: 0px;
+  align-items: center;
+
+
+}
+
+#totalAmountDiv {
+  display: flex;
+
+  margin-left: auto;
+  margin-right: 0px;
+  align-items: center;
+
+}
+
+#taxAmountLabel {
+  direction: rtl; 
+}
+
+#totalAmountLabel {
+  direction: rtl; 
+}
+
+
+
+@media (max-width: 640px) {
+  #payButton {
+    font-size: 15px;
+  }
 }

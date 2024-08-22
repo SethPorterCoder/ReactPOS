@@ -1,8 +1,9 @@
 
 import './POS.css';
 import { useEffect, useState } from 'react';
-import ScrollableButtonGrid from './ScrollableButtonGrid';
+import ItemPanel from './ItemPanel';
 import axios from 'axios';
+import ReceiptTable from './ReceiptTable';
 
 interface propsInterface {
   handleLogInStatus: (status: boolean) => void;
@@ -13,13 +14,24 @@ interface propsInterface {
 
 }
 
+type item = {
+  itemID: number;
+  name: string;
+  price: number;
+}
 
-
-  
+var _taxRate: number = 0.10; //Ten percent.  Change this number on deployment.
 
 function POS({ handleLogInStatus, devAddress }: propsInterface) {
   const [itemCount, setItemCount] = useState(0);
-  const [itemArray, setItemArray] = useState(undefined);
+  const [itemArray, setItemArray] = useState<item[]>([]);
+
+ 
+  const [receiptArray] = useState<item[]>([]);
+  const [receiptCount, setReceiptCount] = useState(0);
+
+  const [tax, setTax] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);  
 
 
   const logOutButtonPressed = () => {
@@ -34,14 +46,37 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
         setItemArray(response.data);
       });
 
-      console.log(itemArray);
     } catch (error) {
       console.error("Error Message:" + error);
     }
   };
+
   useEffect(() => {
     refreshItems();
-  }, []); // Dependency array is now empty, so this will only run once after the initial render.
+  }, [])
+
+  useEffect(() => {
+    let tempTotal: number = 0;
+    let tempTax: number = 0;
+
+    for(let i: number = 0; i < receiptCount; i++) {
+      
+      tempTotal = tempTotal + Number(receiptArray[i].price);
+    
+    
+    }
+
+
+
+    tempTax = tempTotal * _taxRate;
+    setTotal(tempTotal + tempTax);
+    setTax(tempTax);
+
+
+  }, [receiptCount]);
+
+  
+
   
 
 
@@ -57,11 +92,35 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
         <div id="mainPOS">
           <div id="receiptBox">
             <div id="receiptDisplay">
-
+              <ReceiptTable receiptCount={receiptCount} receiptArray={receiptArray}></ReceiptTable>
             </div>
 
 
             <div id="actionBox">
+              <div id="taxBox">
+                <div id='taxLabelDiv'>
+                  <label id='taxLabel'>Tax:</label>
+                </div>
+                <div id='taxAmountDiv'>
+                  <label id='taxAmountLabel'>${tax.toFixed(2)}</label>
+                </div>
+              </div>
+              <div id="totalBox">
+                <div id='totalLabelDiv'>
+                  <label id='totalLabel'>Total:</label>
+                </div>
+                <div id='totalAmountDiv'>
+                  <label id='totalAmountLabel'>${total.toFixed(2)}</label>
+                </div>
+              </div>
+              <div id='voidPayBox'>
+                <div id='voidButtonBox'>
+                  <button id='voidButton'>Void</button>
+                </div>
+                <div id='payButtonBox'>
+                  <button id='payButton'>Pay</button>
+                </div>
+              </div>
 
 
             </div>
@@ -71,10 +130,20 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
           </div>
 
           <div id="itemBox">
-            <ScrollableButtonGrid itemCount={itemCount}></ScrollableButtonGrid>
+            <ItemPanel 
+              itemCount={itemCount} 
+              itemArray={itemArray}
+              receiptCount={receiptCount}
+              receiptArray={receiptArray}
+
+              changeReceiptCount={setReceiptCount}
+              >
+
+              </ItemPanel>
 
           </div>
         </div>
+        
 
 
 

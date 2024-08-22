@@ -6,8 +6,9 @@ import POS from './POS';
 
 
 //This is the dev IP address.
-//CHange this when in production
+//CHange this when in deployment
 var devAddress: string = "http://localhost:3001"  
+var devAddress: string = "http://192.168.0.34:3001"  
 
 
 
