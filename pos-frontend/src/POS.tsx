@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import ItemPanel from './ItemPanel';
 import axios from 'axios';
 import ReceiptTable from './ReceiptTable';
+import DynamicButton from './DynamicButton';
 
 interface propsInterface {
   handleLogInStatus: (status: boolean) => void;
@@ -34,6 +35,14 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
   const [total, setTotal] = useState<number>(0);  
 
 
+  const [itemPanelState, setItemPanelState] = useState<number>(0);
+
+//This changes the states for the item panel.
+  const handleItemPanel = (state: number) => {
+    setItemPanelState(state);
+    console.log(state);
+  }
+
   const logOutButtonPressed = () => {
     handleLogInStatus(false);
   }
@@ -53,17 +62,21 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
 
   useEffect(() => {
     refreshItems();
+    handleItemPanel(1);
   }, [])
 
+ 
   useEffect(() => {
     let tempTotal: number = 0;
     let tempTax: number = 0;
-
+    
+    
+  console.log(receiptCount);
     for(let i: number = 0; i < receiptCount; i++) {
-      
+ 
+    
       tempTotal = tempTotal + Number(receiptArray[i].price);
-    
-    
+
     }
 
 
@@ -71,10 +84,7 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
     tempTax = tempTotal * _taxRate;
     setTotal(tempTotal + tempTax);
     setTax(tempTax);
-
-
   }, [receiptCount]);
-
   
 
   
@@ -115,8 +125,7 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
               </div>
               <div id='voidPayBox'>
                 <div id='voidButtonBox'>
-                  <button id='voidButton'>Void</button>
-                </div>
+                  <DynamicButton buttonState={1} handleItemPanel={handleItemPanel}></DynamicButton>                </div>
                 <div id='payButtonBox'>
                   <button id='payButton'>Pay</button>
                 </div>
@@ -135,6 +144,7 @@ function POS({ handleLogInStatus, devAddress }: propsInterface) {
               itemArray={itemArray}
               receiptCount={receiptCount}
               receiptArray={receiptArray}
+              itemPanelState={itemPanelState}
 
               changeReceiptCount={setReceiptCount}
               >

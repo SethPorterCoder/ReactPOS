@@ -23,7 +23,6 @@ function ReceiptTable({ receiptCount, receiptArray }: propsInterface) {
     const receiptGridRef = useRef<HTMLDivElement>(null);
     const lastItemRef = useRef<HTMLDivElement>(null);
 
-    console.log("Non use Effect: " + lastItemRef.current?.id);
 
     useEffect(() => {
         console.log("Use Effect: " + lastItemRef.current?.id);

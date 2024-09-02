@@ -13,37 +13,49 @@ interface propsInterface {
     receiptCount: number;
     receiptArray: item[];
 
+    itemPanelState: number //1 - Items, 2 - Void Items, 3 - Total Out
+
     changeReceiptCount: (receiptCount: number) => void;
     //So in this arrow method, it takes a boolean value and returns nothing.
     //Props are communication between objects.  
     //In this prop, we passed a method from the App.tsx prop to this component
 }
 
-function ItemPanel({ itemCount, itemArray, receiptCount, receiptArray, changeReceiptCount}: propsInterface)  {
-    let x = 1;
-    if(x == 1) {
-        return (
-            <>
-            <ScrollableButtonGrid 
-                itemCount={itemCount} 
-                itemArray={itemArray}
-                receiptCount={receiptCount}
-                receiptArray={receiptArray}
-                changeReceiptCount={changeReceiptCount}
-                >
+function ItemPanel({ itemCount, itemArray, receiptCount, receiptArray, changeReceiptCount, itemPanelState }: propsInterface) {
 
-                </ScrollableButtonGrid>
-            </>
 
-        );
-    } else {
+    switch (itemPanelState) {
+        case (1):
+            return (
+                <>
+                    <ScrollableButtonGrid
+                        itemCount={itemCount}
+                        itemArray={itemArray}
+                        receiptCount={receiptCount}
+                        receiptArray={receiptArray}
+                        changeReceiptCount={changeReceiptCount}
+                    >
 
+                    </ScrollableButtonGrid>
+                </>
+
+            );
+
+        case (2):
+            return (
+
+                <>
+                    <p>Void Item Menu</p>
+                </>
+            );
     }
 
 
-
-
-
 }
+
+
+
+
+
 
 export default ItemPanel;
